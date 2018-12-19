@@ -1,1 +1,1 @@
-# hussle-app
+# hussle.app
