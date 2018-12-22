@@ -1,7 +1,0 @@
-runtime: python37
-
-env_variables:
-  CLOUD_SQL_USERNAME: 'root'
-  CLOUD_SQL_PASSWORD: '5iOeelEuAK85IDqb'
-  CLOUD_SQL_DATABASE_NAME: 'sys'
-  CLOUD_SQL_CONNECTION_NAME: 'krumholz-202200:us-central1:personalblogdb'
