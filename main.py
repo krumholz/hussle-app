@@ -1,22 +1,22 @@
 import os
+
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
 import pymysql
 
-db_user = os.environ['CLOUD_SQL_USERNAME']
-db_password = os.environ['CLOUD_SQL_PASSWORD']
-db_name = os.environ['CLOUD_SQL_DATABASE_NAME']
-db_connection_name = os.environ['CLOUD_SQL_CONNECTION_NAME']
+db_user = os.environ.get('CLOUD_SQL_USERNAME')
+db_password = os.environ.get('CLOUD_SQL_PASSWORD')
+db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
+db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = ''
+# app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
 
-@app.route("/")
+@app.route("/layout")
 def hello():
     return render_template('layout.html')
 
-@app.route('/db')
+@app.route('/')
 def main():
     # When deployed to App Engine, the `GAE_ENV` environment variable will be
     # set to `standard`
