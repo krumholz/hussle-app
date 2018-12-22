@@ -12,12 +12,12 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
 
-@app.route("/layout")
-def hello():
+@app.route("/")
+def main():
     return render_template('layout.html')
 
-@app.route('/')
-def main():
+@app.route('/db')
+def db():
     # When deployed to App Engine, the `GAE_ENV` environment variable will be
     # set to `standard`
     if os.environ.get('GAE_ENV') == 'standard':
