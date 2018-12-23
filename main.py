@@ -31,9 +31,12 @@ engine = sqlalchemy.create_engine(engine_url, pool_size=3)
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def main():
+    return render_template("layout.html")
+
+@app.route('/db')
+def db():
     cnx = engine.connect()
     cursor = cnx.execute('SELECT NOW() as now;')
     result = cursor.fetchall()
@@ -43,10 +46,6 @@ def main():
     cnx.close()
 
     return str(current_time)
-
-@app.route('/layout')
-def layout():
-    return render_template("layout.html")
 
 
 if __name__ == '__main__':
