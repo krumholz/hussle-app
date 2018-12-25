@@ -1,12 +1,20 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import sqlalchemy
+
+import twitter
 
 db_user = os.environ.get('CLOUD_SQL_USERNAME')
 db_password = os.environ.get('CLOUD_SQL_PASSWORD')
 db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
 db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
+
+api = twitter.Api(consumer_key = os.environ.get('TWITTER_KEY'),
+    consumer_secret = os.environ.get('TWITTER_SECRET'),
+    access_token_key = os.environ.get('TWITTER_ACCESS_KEY'),
+    access_token_secret = os.environ.get('TWITTER_TOKEN_SECRET'),
+    tweet_mode='extended')
 
 # When deployed to App Engine, the `GAE_ENV` environment variable will be
 # set to `standard`
@@ -46,6 +54,15 @@ def db():
     cnx.close()
 
     return str(current_time)
+
+@app.route('/twitter')
+def twitter():
+    timeline = api.GetHomeTimeline()
+    a = []
+    for tweet in timeline:
+        return jsonify(tweet._json)
+    # for tweet in timeline:
+    #     return tweet
 
 
 if __name__ == '__main__':
