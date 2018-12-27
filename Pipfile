@@ -7,9 +7,9 @@ verify_ssl = true
 
 [packages]
 flask = "*"
-pymysql = "*"
 sqlalchemy = "*"
 python-twitter = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.7"
