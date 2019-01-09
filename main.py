@@ -46,14 +46,16 @@ def main():
 @app.route('/db')
 def db():
     cnx = engine.connect()
-    cursor = cnx.execute('SELECT NOW() as now;')
-    result = cursor.fetchall()
-    current_time = result[0][0]
-    # If the connection comes from a pool, close() will send the connection
-    # back to the pool instead of closing it
+    cursor = cnx.execute('SELECT * from innodb_buffer_stats_by_schema;')
+    results = cursor.fetchall()
+    a = []
+    for row in results:
+        a.append(str(row))
     cnx.close()
 
-    return str(current_time)
+    return jsonify(a)
+
+    # return str(current_time)
 
 @app.route('/twitter')
 def twitter():
